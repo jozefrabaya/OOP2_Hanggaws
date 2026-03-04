@@ -44,3 +44,45 @@ abstract class GameCharacter {
 
     public abstract int attack();                                                       // Sabellano (3 classes)
 }
+
+class StreetUnit extends GameCharacter implements Committable {                  //Zafra (3 classes)
+
+    public StreetUnit(String name, int health, int attackPower) {
+        super(name, health, attackPower);
+    }
+
+    @Override
+    public int attack() {
+        return getAttackPower();
+    }
+
+    @Override
+    public void commitOperation(Operation operation) {
+        System.out.println(getName() + " is joining operation: " + operation.getOperationName());
+    }
+}
+
+class Brawler extends StreetUnit {
+
+    public Brawler(String name) {
+        super(name, 120, 25);
+    }
+
+    @Override
+    public int attack() {
+        return getAttackPower() + 10; // Extra melee bonus
+    }
+}
+
+class Hacker extends StreetUnit {
+
+    public Hacker(String name) {
+        super(name, 80, 15);
+    }
+
+    @Override
+    public int attack() {
+        System.out.println(getName() + " performs a cyber attack!");
+        return getAttackPower() + 5;
+    }
+}                                                                            //Zafra (3 classes)
